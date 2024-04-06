@@ -1,9 +1,13 @@
 import { Module } from '@nestjs/common';
 import { DictionaryWasteController } from './dictionary-waste.controller';
 import { DictionaryWasteService } from './dictionary-waste.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { DictionaryWasteRepository } from './dictionary-waste-repository';
+import { DictionaryWasteEntity } from './dictionary-waste-entity';
 
 @Module({
+  imports: [TypeOrmModule.forFeature([DictionaryWasteEntity])],
   controllers: [DictionaryWasteController],
-  providers: [DictionaryWasteService],
+  providers: [DictionaryWasteService, DictionaryWasteRepository],
 })
 export class DictionaryWasteModule {}

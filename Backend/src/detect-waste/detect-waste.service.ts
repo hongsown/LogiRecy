@@ -7,7 +7,7 @@ export class DetectWasteService {
   async getDetectWaste(urlImage: string): Promise<GetDetectWasteDto> {
     try {
       const response = await this.httpService
-        .get(`http://127.0.0.1:5000/analyze?image=${urlImage}`)
+        .get(`${process.env.URL_SERVER_AI}/analyze?image=${urlImage}`)
         .toPromise();
       console.log(response.data);
       return response.data;
