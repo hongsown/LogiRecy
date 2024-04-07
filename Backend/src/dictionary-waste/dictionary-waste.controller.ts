@@ -13,7 +13,7 @@ import { DictionaryWasteService } from './dictionary-waste.service';
 import { CreateDictionaryWasteDto } from './dto/create-dictionary-waste-dto';
 import { GetDictionaryFilterDto } from './dto/get-dictionary-filter-dto';
 import { UpdateDictionaryWasteDto } from './dto/update-dictionary-waste-dto';
-import { DictionaryWasteEntity } from './dictionary-waste-entity';
+import { DictionaryWaste } from './dictionary-waste-entity';
 
 @Controller('dictionary-waste')
 export class DictionaryWasteController {
@@ -30,20 +30,18 @@ export class DictionaryWasteController {
   //   }
   // }
   @Get('/:id')
-  getDictionaryWasteById(
-    @Param('id') id: string,
-  ): Promise<DictionaryWasteEntity> {
+  getDictionaryWasteById(@Param('id') id: string): Promise<DictionaryWaste> {
     return this.dictionaryWasteService.getDictionaryWasteById(id);
   }
-  // @Post()
-  // createDictionaryWaste(
-  //   @Body()
-  //   createDictionaryWasteDto: CreateDictionaryWasteDto,
-  // ): DictionaryWaste {
-  //   return this.dictionaryWasteService.createDictionaryWaste(
-  //     createDictionaryWasteDto,
-  //   );
-  // }
+  @Post()
+  createDictionaryWaste(
+    @Body()
+    createDictionaryWasteDto: CreateDictionaryWasteDto,
+  ): Promise<DictionaryWaste> {
+    return this.dictionaryWasteService.createDictionaryWaste(
+      createDictionaryWasteDto,
+    );
+  }
   // @Delete('/:id')
   // deleteDictionaryWaste(@Param('id') id: string): void {
   //   return this.dictionaryWasteService.deleteDictionaryWaste(id);

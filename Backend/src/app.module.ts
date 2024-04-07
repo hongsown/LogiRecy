@@ -8,7 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     DetectWasteModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
+      host: 'localhost', // run docker with command : 127.0.1.1
       port: 5432,
       username: 'postgres',
       password: 'postgres',

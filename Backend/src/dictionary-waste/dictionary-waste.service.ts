@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { DictionaryWasteEntity } from './dictionary-waste-entity';
-import { DictionaryWasteRepository } from './dictionary-waste-repository';
 import { InjectRepository } from '@nestjs/typeorm';
+import { DictionaryWaste } from './dictionary-waste-entity';
+import { DictionaryWasteRepository } from './dictionary-waste-repository';
+import { CreateDictionaryWasteDto } from './dto/create-dictionary-waste-dto';
 
 @Injectable()
 export class DictionaryWasteService {
@@ -35,23 +36,14 @@ export class DictionaryWasteService {
   //   //do something with search
   //   return dictionaryWaste;
   // }
-  // createDictionaryWaste(
-  //   createDictionaryWasteDto: CreateDictionaryWasteDto,
-  // ): DictionaryWaste {
-  //   const { title, description } = createDictionaryWasteDto;
-  //   const newDictionaryWaste: DictionaryWaste = {
-  //     id: uuid(),
-  //     title: title,
-  //     description: description,
-  //     status: StatusWaste.NOT_RECYCLED,
-  //     image: '',
-  //     createdAt: new Date(),
-  //     updatedAt: new Date(),
-  //   };
-  //   this.listDictionaryWaste.push(newDictionaryWaste);
-  //   return newDictionaryWaste;
-  // }
-  async getDictionaryWasteById(id: string): Promise<DictionaryWasteEntity> {
+  createDictionaryWaste(
+    createDictionaryWasteDto: CreateDictionaryWasteDto,
+  ): Promise<DictionaryWaste> {
+    return this.dictionaryWasteRepository.createDictionaryWaste(
+      createDictionaryWasteDto,
+    );
+  }
+  async getDictionaryWasteById(id: string): Promise<DictionaryWaste> {
     const found = await this.dictionaryWasteRepository.findOne({
       where: { id },
     });
