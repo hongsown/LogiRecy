@@ -3,17 +3,18 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DictionaryWaste } from './dictionary-waste-entity';
 import { DictionaryWasteRepository } from './dictionary-waste-repository';
 import { CreateDictionaryWasteDto } from './dto/create-dictionary-waste-dto';
+import { GetDictionaryFilterDto } from './dto/get-dictionary-filter-dto';
 
 @Injectable()
 export class DictionaryWasteService {
   constructor(
     @InjectRepository(DictionaryWasteRepository)
     private dictionaryWasteRepository: DictionaryWasteRepository,
-  ) {}
-  // private listDictionaryWaste: DictionaryWaste[] = [];
-  // getAllDictionaryWaste(): DictionaryWaste[] {
-  //   return this.listDictionaryWaste;
-  // }
+  ) { }
+
+  getDictionaryWaste(filterDto: GetDictionaryFilterDto): Promise<DictionaryWaste[]> {
+    return this.dictionaryWasteRepository.getDictionaryWaste(filterDto);
+  }
   // getDictionaryWasteByFilter(
   //   filterDto: GetDictionaryFilterDto,
   // ): DictionaryWaste[] {
@@ -52,12 +53,12 @@ export class DictionaryWasteService {
     }
     return found;
   }
-  // deleteDictionaryWaste(id: string): void {
-  //   const found = this.getDictionaryWasteById(id);
-  //   this.listDictionaryWaste = this.listDictionaryWaste.filter(
-  //     (item) => item.id !== found.id,
-  //   );
-  // }
+  async deleteDictionaryWaste(id: string): Promise<void> {
+    const result = await this.dictionaryWasteRepository.delete(id);
+    if (result.affected === 0) {
+      throw new NotFoundException(`Dictionary Waste with ID "${id}" not found`);
+    }
+  }
   // updateDictionaryWasteStatus(
   //   id: string,
   //   isRecycled: StatusWaste,

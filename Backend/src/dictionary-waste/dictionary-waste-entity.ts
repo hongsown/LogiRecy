@@ -7,10 +7,16 @@ export class DictionaryWaste {
   id: string;
 
   @Column()
-  title: string;
+  name: string;
+
+  @Column()
+  image: string;
 
   @Column()
   description: string;
+
+  @Column()
+  howToRecycle: string;
 
   @Column()
   status: StatusWaste;

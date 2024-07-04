@@ -2,8 +2,14 @@ import { IsNotEmpty } from 'class-validator';
 
 export class CreateDictionaryWasteDto {
   @IsNotEmpty()
-  title: string;
+  name: string;
 
   @IsNotEmpty()
   description: string;
+
+  @IsNotEmpty()
+  howToRecycle: string;
+
+  @IsNotEmpty()
+  image: string;
 }
