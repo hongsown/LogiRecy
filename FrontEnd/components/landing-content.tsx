@@ -1,4 +1,3 @@
-'use client';
 
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';

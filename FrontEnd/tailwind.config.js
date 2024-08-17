@@ -19,6 +19,7 @@ module.exports = {
       backgroundImage: theme => ({
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-linear': 'linear-gradient(to top left, #00C9FF, #92FE9D)',
+        'hero-pattern': "url('/background-hero.png')",
       }),
       colors: {
         border: 'hsl(var(--border))',
