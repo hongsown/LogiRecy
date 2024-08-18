@@ -1,4 +1,4 @@
-import prismadb from "@/lib/prismadb";
+// import prismadb from "@/lib/prismadb";
 import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
 import { auth, currentUser } from "@clerk/nextjs";
@@ -11,16 +11,16 @@ export async function GET() {
     if (!userId || !user) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
-    const userSubscription = await prismadb.userSubscriton.findUnique({
-      where: { userId: userId },
-    });
-    if (userSubscription && userSubscription.stripeCustomerId) {
-      const stripeSession = await stripe.billingPortal.sessions.create({
-        customer: userSubscription.stripeCustomerId,
-        return_url: settingUrl,
-      });
-      return new NextResponse(JSON.stringify({ url: stripeSession.url }));
-    }
+    // const userSubscription = await prismadb.userSubscriton.findUnique({
+    //   where: { userId: userId },
+    // });
+    // if (userSubscription && userSubscription.stripeCustomerId) {
+    //   const stripeSession = await stripe.billingPortal.sessions.create({
+    //     customer: userSubscription.stripeCustomerId,
+    //     return_url: settingUrl,
+    //   });
+    //   return new NextResponse(JSON.stringify({ url: stripeSession.url }));
+    // }
     const stripeSession = await stripe.checkout.sessions.create({
       success_url: settingUrl,
       cancel_url: settingUrl,
