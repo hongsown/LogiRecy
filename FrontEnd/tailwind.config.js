@@ -19,8 +19,13 @@ module.exports = {
       backgroundImage: theme => ({
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-linear': 'linear-gradient(to top left, #00C9FF, #92FE9D)',
-        'hero-pattern': "url('/background-hero.png')",
+        'hero-pattern': "url('/hero-bg.svg')",
+        'masker': 'conic-gradient(from 180deg at 50% 50%, #0095ff 0deg, 180deg, #42d392 1turn)',
       }),
+      backgroundColor: {
+        'header': 'rgba(24, 24, 27, 0.6)',
+        
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
