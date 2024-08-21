@@ -19,6 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Change to FrontEnd directory
+        run: cd FrontEnd
+
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
@@ -33,19 +36,19 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install && yarn install ci
+        run: yarn install --cwd ./FrontEnd
 
       - name: Verify Next.js Installation
-        run: yarn list next
+        run: yarn list next --cwd ./FrontEnd
 
       - name: Install Vercel CLI
         run: yarn global add vercel@latest
 
       - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }} --cwd ./FrontEnd
         
       - name: Build Project Artifacts
-        run: yarn build
+        run: yarn build --cwd ./FrontEnd
 
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }} --cwd ./FrontEnd
