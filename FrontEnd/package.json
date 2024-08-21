@@ -41,7 +41,7 @@
     "leaflet-routing-machine": "^3.2.12",
     "lrm-google": "^1.0.1",
     "lucide-react": "^0.261.0",
-    "next": "13.4.10",
+    "next": "^14.2.5",
     "next-cloudinary": "^6.2.0",
     "next-themes": "^0.2.1",
     "openai": "^3.3.0",
